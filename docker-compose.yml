@@ -1,0 +1,42 @@
+version: '3.7'
+
+services:
+  hi-docker:
+    container_name: getUsers
+    image: hi-docker1:1.0
+    build:
+      context: /hello-docker/
+      dockerfile: Dockerfile
+    ports:
+      - "8888:8080"
+    depends_on:
+      - mysql
+
+  hi-docker2:
+    container_name: postUser
+    image: hi-docker2:2.0
+    build:
+      context: /hello-docker-2/
+      dockerfile: Dockerfile
+    ports:
+      - "7777:7070"
+    depends_on:
+      - mysql
+
+  mysql:
+    container_name: mysql2
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=abdo
+    ports:
+      - "3307:3306"
+
+
+  rabbit:
+    container_name: rabbit2
+    image: rabbitmq:3.8-management
+    ports:
+      - "5672:5672"
+      - "5673:5673"
+      - "15672:15672"
+

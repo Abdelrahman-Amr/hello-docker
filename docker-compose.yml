@@ -9,6 +9,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8888:8080"
+    networks:
+      - db_network
     depends_on:
       - mysql
 
@@ -20,6 +22,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "7777:7070"
+    networks:
+      - db_network
     depends_on:
       - mysql
 
@@ -30,6 +34,8 @@ services:
       - MYSQL_ROOT_PASSWORD=abdo
     ports:
       - "3307:3306"
+    networks:
+      - db_network
 
 
   rabbit:
@@ -40,3 +46,6 @@ services:
       - "5673:5673"
       - "15672:15672"
 
+networks:
+  db_network:
+    driver: bridge

@@ -32,6 +32,9 @@ services:
     image: mysql
     environment:
       - MYSQL_ROOT_PASSWORD=abdo
+      - MYSQL_DATABASE=docker
+    volumes:
+      - /sql/db:/var/lib/mysql
     ports:
       - "3307:3306"
     networks:
